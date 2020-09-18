@@ -53,9 +53,10 @@ function AddArticle(props) {
         axios({
             method: 'get',
             url: servicePath.getTypeInfo,
-            withCredentials: true,
+            withCredentials: true
         }).then(
             res => {
+                console.log(res.data.data)
                 if (res.data.data == '没有登录') {
                     localStorage.removeItem('openId')
                     props.history.push('/')

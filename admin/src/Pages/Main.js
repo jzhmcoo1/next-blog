@@ -13,7 +13,6 @@ function Main() {
             ></Route>
             <Route
                 path="/index/"
-                exact
                 component={AdminIndex}
             ></Route>
         </Router>

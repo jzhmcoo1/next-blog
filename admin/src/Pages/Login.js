@@ -1,4 +1,4 @@
-import React, { useState, useEffect, createContext } from 'react'
+import React, { useState, useEffect } from 'react'
 import 'antd/dist/antd.css'
 import { Card, Input, Button, Spin, message } from 'antd'
 import '../static/css/Login.css'
@@ -6,17 +6,11 @@ import { UserOutlined, KeyOutlined } from '@ant-design/icons'
 import servicePath from '../config/apiUrl'
 import axios from 'axios'
 
-const openIdContext = createContext()
-
 function Login(props) {
 
     const [userName, setUserName] = useState('')
     const [password, setPassWord] = useState('')
     const [isLoading, setIsLoading] = useState(false)
-
-    useEffect(() => {
-
-    }, [])
 
     const checkLogin = () => {
         setIsLoading(true)
