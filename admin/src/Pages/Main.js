@@ -7,7 +7,7 @@ function Main() {
     return (
         <Router>
             <Route
-                path='/login/'
+                path='/'
                 exact
                 component={Login}
             ></Route>
