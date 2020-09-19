@@ -5,7 +5,7 @@ import Router from 'next/router'
 import Link from 'next/link'
 import axios from 'axios'
 import servicePath from '../config/apiUrl'
-import HomeOutlined from '@ant-design/icons'
+import { HomeOutlined } from '@ant-design/icons'
 import * as Icon from '@ant-design/icons'
 
 const Header = () => {
@@ -26,10 +26,12 @@ const Header = () => {
     }, [])
 
     const handleClick = (e) => {
-        if (e.key == 0) {
+        let num = e.key.replace('item_', '')
+        console.log(num)
+        if (num == 0) {
             Router.push('/')
         } else {
-            Router.push('/list?id=' + e.key)
+            Router.push('/list?id=' + num)
         }
     }
 
@@ -37,15 +39,14 @@ const Header = () => {
     return (
         <div className="header">
             <Row type="flex" justify="center">
-                <Col xs={24} sm={24} md={10} lg={15} xl={12}>
-                    <span className="header-logo">Lixing</span>
-                    <span className="header-txt">软工带学生</span>
+                <Col xs={24} sm={24} md={13}>
+                    <span className="header-logo">Next</span>
+                    <span className="header-txt">由next.js生成的博客系统demo</span>
                 </Col>
 
-                <Col className="memu-div" xs={0} sm={0} md={14} lg={8} xl={6}>
+                <Col className="memu-div" xs={0} sm={0} md={11}>
                     <Menu mode="horizontal" onClick={handleClick}>
-                        <Menu.Item key="0">
-                            <HomeOutlined />
+                        <Menu.Item key="0" icon={<HomeOutlined />}>
                             博客首页
                         </Menu.Item>
                         {

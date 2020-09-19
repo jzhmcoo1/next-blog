@@ -6,6 +6,11 @@
     border-bottom: 1px solid #eee;
 }
 
+.header-center {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
 .header-logo {
     color: #1e90ff;
     font-size: 1.4rem;
@@ -19,12 +24,11 @@
     padding-left: 0.3rem;
 }
 
-.ant-meu {
-    line-height: 2.8rem;
+.memu-div {
+    padding-top: 10px;
 }
 
-.ant-menu-item {
-    font-size: 1rem !important;
-    padding-left: 1rem;
-    padding-right: 1rem;
+.memu-div a {
+    color: #999 !important;
+    font-size: .9rem;
 }

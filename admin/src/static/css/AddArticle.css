@@ -102,3 +102,21 @@
 .date-select {
     margin-top: 10px;
 }
+
+.picker {
+    flex-wrap: wrap;
+    display: flex;
+}
+
+.datePicker {
+    flex: 1;
+    margin: 5px;
+    height: 100%;
+    min-width: 50px;
+}
+
+.timePicker {
+    flex: 1;
+    margin: 5px;
+    height: 100%;
+}
