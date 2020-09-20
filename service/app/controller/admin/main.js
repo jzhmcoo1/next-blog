@@ -27,18 +27,6 @@ class MainController extends Controller {
         }
     }
 
-    async checkOpenId() {
-        let cOpenId = this.ctx.request.body.openId;
-        let sOpenId = this.ctx.session.openId.openId;
-        // eslint-disable-next-line no-bitwise
-        if (sOpenId & cOpenId === sOpenId) {
-            this.ctx.body = { data: '已经登录' };
-        } else {
-            this.ctx.body = { data: '没有登录' };
-        }
-
-    }
-
     async getTypeInfo() {
         const resType = await this.app.mysql.select('type');
         this.ctx.body = { data: resType };

@@ -9,7 +9,6 @@ let servicePath = {
     getArticleList: ipUrl + 'getArticleList', //文章列表
     delArticle: ipUrl + 'delArticle/', //删除文章
     getArticleById: ipUrl + 'getArticleById/', //用id获取文章
-    checkOpenId: ipUrl + 'checkOpenId',  //  检查OPendId是否和服务器一样
 }
 
 export default servicePath

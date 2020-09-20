@@ -1,4 +1,4 @@
-import React, { useState, useEffect, createContext } from 'react'
+import React, { useState } from 'react'
 import 'antd/dist/antd.css'
 import { Card, Input, Button, Spin, message } from 'antd'
 import '../static/css/Login.css'
@@ -6,7 +6,6 @@ import { UserOutlined, KeyOutlined } from '@ant-design/icons'
 import servicePath from '../config/apiUrl'
 import axios from 'axios'
 
-const openIdContext = createContext()
 
 function Login(props) {
 
@@ -14,29 +13,6 @@ function Login(props) {
     const [password, setPassword] = useState('')
     const [isLoading, setIsLoading] = useState(false)
 
-    useEffect(() => {
-        //检查是否已经登录
-        let openId = localStorage.getItem('openId')
-        let dataProps = { 'openId': openIdContext }
-        console.log(openId)
-        if (openId) {
-            axios({
-                method: 'post',
-                url: servicePath.checkOpenId,
-                data: dataProps,
-                withCredentials: true,
-            }).then(
-                res => {
-                    console.log(res)
-                    if (res.data.data) {
-                        message.success('已经登录')
-                        props.history.push('/index')
-                    }
-                }
-            )
-
-        }
-    }, [])
 
     const checkLogin = () => {
         setIsLoading(true)
