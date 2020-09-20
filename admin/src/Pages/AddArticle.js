@@ -23,9 +23,11 @@ function AddArticle(props) {
     const [selectedType, setSelectedType] = useState('请选择类型') //选择的文章类别
 
     useEffect(() => {
+
         getTypeInfo()
-        //获取文章id
+        //获得文章ID
         let tmpId = props.match.params.id
+        console.log(tmpId)
         if (tmpId) {
             setArticleId(tmpId)
             getArticleById(tmpId)
@@ -65,7 +67,7 @@ function AddArticle(props) {
         }).then(
             res => {
                 console.log(res.data.data)
-                if (res.data.data == '没有登录') {
+                if (res.data.data === '没有登录') {
                     localStorage.removeItem('openId')
                     props.history.push('/')
                 } else {
@@ -81,7 +83,7 @@ function AddArticle(props) {
 
     //保存文章的方法
     const saveArticle = () => {
-        if (!selectedType) {
+        if (selectedType === '请选择类型') {
             message.error('必须选择文章类型')
             return false
         } else if (!articleTitle) {
@@ -96,6 +98,9 @@ function AddArticle(props) {
         } else if (!showDate) {
             message.error('发布日期不能为空')
             return false
+        } else if (!showTime) {
+            message.error('发布时间不能为空')
+            return false
         }
 
         let dataProps = {}
@@ -106,7 +111,7 @@ function AddArticle(props) {
         let dateText = showDate.replace('-', '/') + " " + showTime
         dataProps.addTime = (new Date(dateText).getTime()) / 1000
 
-        if (articleId == 0) {
+        if (articleId === 0) {
             dataProps.view_count = Math.ceil(Math.random() * 100) + 1000
             axios({
                 method: 'post',

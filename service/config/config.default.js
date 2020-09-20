@@ -33,9 +33,9 @@ module.exports = appInfo => {
       // username
       user: 'root',
       // password
-      password: 'your_new_password',
+      password: '你的密码',
       // database
-      database: 'react-blog',
+      database: '你的数据库名字',
     },
     // load into app, default is open
     app: true,
@@ -47,13 +47,13 @@ module.exports = appInfo => {
     csrf: {
       enable: false,
     },
-    domainWhiteList: [ '*' ],
+    domainWhiteList: ['*'],
   };
 
   config.cors = {
-    origin: 'http://localhost:3000',
+    // origin: 'http://localhost:3000',
     credentials: true, // 允许cookies跨域
-    allowMethods: 'GET,POST,PUT,DELETE,PATCH,OPTIONS',
+    allowMethods: 'GET,POST,PUT,DELETE,PATCH,OPTIONS,HEAD',
   };
 
   return {

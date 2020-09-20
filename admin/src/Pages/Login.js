@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, createContext } from 'react'
 import 'antd/dist/antd.css'
 import { Card, Input, Button, Spin, message } from 'antd'
 import '../static/css/Login.css'
@@ -6,11 +6,37 @@ import { UserOutlined, KeyOutlined } from '@ant-design/icons'
 import servicePath from '../config/apiUrl'
 import axios from 'axios'
 
+const openIdContext = createContext()
+
 function Login(props) {
 
     const [userName, setUserName] = useState('')
-    const [password, setPassWord] = useState('')
+    const [password, setPassword] = useState('')
     const [isLoading, setIsLoading] = useState(false)
+
+    useEffect(() => {
+        //检查是否已经登录
+        let openId = localStorage.getItem('openId')
+        let dataProps = { 'openId': openIdContext }
+        console.log(openId)
+        if (openId) {
+            axios({
+                method: 'post',
+                url: servicePath.checkOpenId,
+                data: dataProps,
+                withCredentials: true,
+            }).then(
+                res => {
+                    console.log(res)
+                    if (res.data.data) {
+                        message.success('已经登录')
+                        props.history.push('/index')
+                    }
+                }
+            )
+
+        }
+    }, [])
 
     const checkLogin = () => {
         setIsLoading(true)
@@ -40,7 +66,8 @@ function Login(props) {
         }).then(
             res => {
                 setIsLoading(false)
-                if (res.data.data == '登录成功') {
+                if (res.data.data === '登录成功') {
+                    console.log('登录成功')
                     localStorage.setItem('openId', res.data.openId)
                     props.history.push('/index')
                 } else {
@@ -53,7 +80,7 @@ function Login(props) {
     return (
         <div className="login-div">
             <Spin tip="Loading..." spinning={isLoading}>
-                <Card title="JSPang blog System" bordered={true} style={{ width: 400 }}>
+                <Card title="Next Blog Login" bordered={true} style={{ width: 400 }}>
                     <Input
                         id="userName"
                         size="large"
@@ -72,7 +99,7 @@ function Login(props) {
                         prefix={
                             <KeyOutlined style={{ color: 'rgba(0,0,0,.25)' }} />
                         }
-                        onChange={(e) => { setPassWord(e.target.value) }}
+                        onChange={(e) => { setPassword(e.target.value) }}
                     ></Input.Password>
                     <br /><br />
 

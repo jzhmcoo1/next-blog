@@ -12,4 +12,5 @@ module.exports = app => {
     router.get('/admin/getArticleList', controller.admin.main.getArticleList);
     router.get('/admin/delArticle/:id', controller.admin.main.delArticle);
     router.get('/admin/getArticleById/:id', controller.admin.main.getArticleById);
+    router.post('/admin/checkOpenId', controller.admin.main.checkOpenId);
 };

@@ -11,7 +11,7 @@ import '../static/css/AdminIndex.css'
 import { Route } from 'react-router-dom'
 import AddArticle from './AddArticle'
 import ArticleList from './ArticleList'
-const { Header, Content, Footer, Sider } = Layout;
+const { Content, Footer, Sider } = Layout;
 const { SubMenu } = Menu;
 
 function AdminIndex(props) {
@@ -22,9 +22,9 @@ function AdminIndex(props) {
     };
 
     const handleClickArticle = e => {
-        if (e.key == 'addArticle') {
+        if (e.key === 'addArticle') {
             props.history.push('/index/add')
-        } else {
+        } else if (e.key === 'articleList') {
             props.history.push('/index/list')
         }
     }
@@ -54,19 +54,18 @@ function AdminIndex(props) {
                     </Breadcrumb>
                     <div className="site-layout-background" style={{ padding: 24, minHeight: 360 }}>
                         <div>
-                            <Route path="/index/" exact component={AddArticle}></Route>
+                            <Route path="/index/" exact component={ArticleList}></Route>
                             <Route path="/index/add/" exact component={AddArticle}></Route>
-                            <Route path="/index/list/" exact component={ArticleList}></Route>
+                            <Route path="/index/list/" component={ArticleList}></Route>
                             <Route path="/index/add/:id" exact component={AddArticle}></Route>
                         </div>
                     </div>
                 </Content>
                 <Footer style={{ textAlign: 'center' }}>
                     Next 博客后台管理<br />
-                    Lixing.com
                 </Footer>
             </Layout>
-        </Layout >
+        </Layout>
     );
 }
 

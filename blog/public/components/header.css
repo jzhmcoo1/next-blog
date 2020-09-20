@@ -1,9 +1,9 @@
 .header {
     background-color: #fff;
-    padding: .4rem;
+    padding: 1rem;
     overflow: hidden;
     height: 3.2rem;
-    border-bottom: 1px solid #eee;
+    margin-bottom: 1rem;
 }
 
 .header-center {
@@ -13,7 +13,7 @@
 
 .header-logo {
     color: #1e90ff;
-    font-size: 1.4rem;
+    font-size: 1.5rem;
     text-align: left;
 }
 
@@ -25,10 +25,9 @@
 }
 
 .memu-div {
-    padding-top: 10px;
+    padding-top: 0;
 }
 
 .memu-div a {
     color: #999 !important;
-    font-size: .9rem;
 }

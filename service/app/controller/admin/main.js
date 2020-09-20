@@ -9,26 +9,34 @@ class MainController extends Controller {
     }
 
     async checkLogin() {
-        const userName = this.ctx.request.body.userName;
-        const password = this.ctx.request.body.password;
-        const sql = "SELECT userName From admin_user WHERE userName = '" +
-            userName + "'AND password = '" + password + "'";
-        const res = await this.app.mysql.query(sql);
+        let userName = this.ctx.request.body.userName;
+        let password = this.ctx.request.body.password;
+        console.log(userName, password);
+        const sql = " SELECT userName FROM admin_user WHERE userName = '" + userName +
+            "' AND password = '" + password + "'";
 
+        const res = await this.app.mysql.query(sql);
         if (res.length > 0) {
-            const openId = new Date().getTime();
-            this.ctx.session.openId = {
-                openId: openId,
-            };
-            this.ctx.body = {
-                data: '登录成功',
-                openId: openId,
-            };
+            //登录成功,进行session缓存
+            let openId = new Date().getTime();
+            this.ctx.session.openId = { 'openId': openId };
+            this.ctx.body = { data: '登录成功', 'openId': openId };
+
         } else {
-            this.ctx.body = {
-                data: '登录失败',
-            };
+            this.ctx.body = { data: '登录失败' };
         }
+    }
+
+    async checkOpenId() {
+        let cOpenId = this.ctx.request.body.openId;
+        let sOpenId = this.ctx.session.openId.openId;
+        // eslint-disable-next-line no-bitwise
+        if (sOpenId & cOpenId === sOpenId) {
+            this.ctx.body = { data: '已经登录' };
+        } else {
+            this.ctx.body = { data: '没有登录' };
+        }
+
     }
 
     async getTypeInfo() {
